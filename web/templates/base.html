@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+
+  {% load i18n %}
+  {% load cache %}
+  {% load humanize %}  
+  
+    <title>{% block title %}{{title}}{% endblock %} | FarmSubsidy.org</title>
+
+
+    <link rel="stylesheet" href="{{ MEDIA_URL }}/css/layout.css" type="text/css"> 
+    <link rel="stylesheet" href="{{ MEDIA_URL }}/css/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="{{ MEDIA_URL }}/css/print.css" type="text/css" media="print"> 
+    <!--[if IE]>
+      <link rel="stylesheet" href="/media/css/ie.css" type="text/css" media="screen, projection">
+    <![endif]-->
+ 
+    <script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery.example.min.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery-ui-1.7.1.custom.min.js"></script>
+    <script src="{{ MEDIA_URL }}/js/scripts.js" type="text/javascript" charset="utf-8"></script>
+  {% if custom_list.active %}
+    <link rel="stylesheet" href="/media/css/custom_lists.css" type="text/css" media="screen, projection">
+    <script src="{{ MEDIA_URL }}/js/custom_lists.js" type="text/javascript" charset="utf-8"></script>
+  {% endif %}
+   
+
+</head>
+<body id="{% block body_style %}{% endblock %}" class="{% block body_class %}{% endblock %} {% if list_items.create %}list_enabled{% endif %}">
+  <div id="topbar">
+    
+    <form method="post" action="http://app.icontact.com/icp/signup.php" name="icpsignup" accept-charset="UTF-8" onsubmit="return verifyRequired();">
+    <input name="redirect" value="http://www.icontact.com/www/signup/thanks.html" type="hidden">
+    <input name="errorredirect" value="http://www.icontact.com/www/signup/error.html" type="hidden">
+    <script type="text/javascript">
+
+    if (document.location.protocol === "https:")
+
+    	document.icpsignup.action = "https://app.icontact.com/icp/signup.php";
+    function verifyRequired() {
+      if (document.icpsignup["fields_email"].value == "") {
+        document.icpsignup["fields_email"].focus();
+        alert("The Email field is required.");
+        return false;
+      }
+
+
+    return true;
+    }
+    </script>
+    <div id="SignUp">
+      <label for="fields_email">Join the farmsubsidy.org newsletter. Email:</label>&nbsp;<input type="text" name="fields_email" value="" id="fields_email" size="20">
+      <input name="Submit" value="Submit" type="submit">
+        <input name="listid" value="3290" type="hidden">
+        <input name="specialid:3290" value="OMN5" type="hidden">
+        <input name="clientid" value="161514" type="hidden">
+        <input name="formid" value="278" type="hidden">
+        <input name="reallistid" value="1" type="hidden">
+        <input name="doubleopt" value="1" type="hidden">
+    </div>
+    </form>
+    
+    
+    
+    
+    
+    
+  </div>
+<div id="outer">  
+    <div id="head">
+      <h1><a href="/">
+        {% block logo %}<img src="/media/images/logo-small.png" width="83" height="58"> {% endblock %}
+        <span>farmsubsidy.org</span></a></h1>
+      <h2>Discover who gets what from the Common Agricultural Policy</h2>
+      
+      <ul id="mainmenu">
+        {# {% load active_url %} #}
+        {# <li class="{% active request "^/(?!faq|about|blog|news)" %}"><a href="/" >Search / Browse</a></li> #}
+        {# <li class="{% active request "^/faq/" %}"><a href="/faq/">FAQs</a></li> #}
+        {# <li class="{% active request "^/about/" %}"><a href="/about/">About</a></li> #}
+        {# <li class="{% active request "^/blog/" %}"><a href="/blog/">Blog</a></li> #}
+        {# <li class="{% active request "^/news/" %}"><a href="/news/">In The News</a></li> #}
+        {# <li class="{% active request "^/lists/" %}"><a href="/lists/">Custom Lists</a></li> #}
+      </ul>
+      
+      {# {% load user %} #}
+      {# {% user_menu user %} #}
+      
+      {% block message %}
+      {% endblock %}
+    </div>    
+    
+    <div id="right">
+      {% block right %}
+        
+      {% endblock %}
+
+      {# {% if tweet %} #}
+      <div class="twitter block">
+          <h3>Follow <a href="http://twitter.com/farmsubsidy">farmsubsidy.org</a> on Twitter</h3> 
+          <p>{{ tweet.text|urlize }}<p>
+      </div>
+      {# {% endif %} #}
+
+
+      {# {% block list %} #}
+      {#   {% if custom_list.active %} #}
+      {#   <div id="list_standard"> #}
+      {#     <div id="list_content"> #}
+      {#        #}
+      {#  #}
+      {#     <h3>Custom List</h3> #}
+      {#     {# {% load customlist_list %} #}
+      {#     {# {% list_total list_items.items %} #}
+      {#     {# <div class="list_items hide">{% list_items list_items.items %}</div> #}
+      {#     <p>The total for your list is: <strong>&euro;{{ custom_list.total }}</strong></p> #}
+      {#     <div id="list_items"> #}
+      {#       <ul> #}
+      {#         {% if custom_list.list_items.items %} #}
+      {#           {% for docid, item in custom_list.list_items.items %} #}
+      {#             <li>{{ item.name }} &mdash; {{ item.amount }}</li> #}
+      {#           {% endfor %} #}
+      {#         {% else %} #}
+      {#          <strong>There are no items in your list yet.</strong> #}
+      {#          <li>You can browse though this site and add items with a checkbox next to them.</li> #}
+      {#         {% endif %} #}
+      {#       </ul> #}
+      {#     </div> #}
+      {#     </div> #}
+      {#     </div> #}
+      {#    #}
+      {#      #}
+      {#   {% endif %} #}
+      {# {% endblock %} #}
+      
+    </div>
+    
+    <div id="content">
+      <h2>{% block page_title %}{% endblock %}</h2>
+      {% block error %}
+
+      {% endblock %}
+      
+      {% block content %}
+      {% endblock %}
+    </div>
+    
+
+</div>
+
+  {% block footer %}
+    <div id="footer" class="clear">
+    <p>FarmSubsidy.org is a project of <a href="http://www.followthemoney.eu/" title="Monitoring the European Union Budget | FollowTheMoney.eu" target="_blank">FollowTheMoney.eu</a></p>
+    
+    
+    </div>
+  {% endblock %}
+
+    
+</body>
+</html>

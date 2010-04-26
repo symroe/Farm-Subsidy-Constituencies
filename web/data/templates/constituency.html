@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% load pagination_tags %}
+{% load parse_qs %}
+{% block title %}{{ constituency.name }}{% endblock %}
+{% block page_title %}{{ constituency.name }} (<a href="{% url constituency_list %}">See all</a>){% endblock %}
+
+{% block content %}
+<h3>Total: &euro;{{ constituency.total|intcomma }}</h3>
+
+
+<table>
+  <thead>
+    <th>{% sort_link 'Name' 'sort' 'name' %}</th>
+    <th>{% sort_link 'Amount' 'sort' '-amount' %}</th>
+  </thead>
+  <tbody>
+    {% autopaginate recipients 30 3 %}
+    
+    {% for recipient in recipients %}
+      <tr>
+        <td>{{ recipient.name }}</a></td>
+        <td>&euro;{{ recipient.amount|floatformat:2|intcomma }}</td>
+      </tr>
+    
+    {% endfor %}
+    
+  </tbody>
+</table>
+  <h4 class="pager">{% paginate %}</h4>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% block content %}
+  
+<div class="section clear"><div class="halfcol">
+  <h2>Top Recipients</h2>
+  <table>
+    <thead>
+      <th>Recipient Name</th>
+      <th>Amount</th>
+    </thead>
+    {% for c in top_recipients %}
+      <tr>
+        <td>{{ c.name }}</td>
+        <td>&euro;{{ c.amount|floatformat:2|intcomma }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+</div>
+
+<div class="halfcol">
+  <h2>By Average Per Recipient</h2>
+  <table>
+    <thead>
+      <th>Constituency</th>
+      <th>Average</th>
+    </thead>
+    {% for c in top_constituencies_by_avg %}
+      <tr>
+        <td><a href="{% url constituency c.slug %}">{{ c.name }}</a></td>
+        <td>&euro;{{ c.average|floatformat:2|intcomma }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+</div>
+</div>
+<div class="halfcol">
+  <h2>By Total Amount</h2>
+  <table>
+    <thead>
+      <th>Constituency</th>
+      <th>Amount</th>
+    </thead>  
+    {% for c in top_constituencies_by_amount %}
+      <tr>
+        <td><a href="{% url constituency c.slug %}">{{ c.name }}</a></td>
+        <td>&euro;{{ c.total|floatformat:2|intcomma }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+</div>
+
+<div class="halfcol">
+  <h2>By Total Recipients</h2>
+  <table>
+    <thead>
+      <th>Constituency</th>
+      <th>Recipients</th>
+    </thead>  
+    {% for c in top_constituencies_by_recipients %}
+      <tr>
+        <td><a href="{% url constituency c.slug %}">{{ c.name }}</a></td>
+        <td>{{ c.recipients }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% load parse_qs %}
+{% block content %}
+  <table>
+    <thead>
+      <th>{% sort_link 'Name' 'sort' 'name' %}</th>
+      <th>{% sort_link 'Recipients' 'sort' 'recipients' %}</th>
+      <th>{% sort_link 'Total' 'sort' 'total' %}</th>
+      <th>{% sort_link 'Average' 'sort' 'average' %}</th>
+    </thead>
+    <tbody>
+      {% for constituency in constituency_list %}
+        <tr>
+          <td><a href="{% url constituency constituency.slug %}">{{ constituency.name }}</a></td>
+          <td>{{ constituency.recipients }}</td>
+          <td>&euro;{{ constituency.total|floatformat:2|intcomma }}</td>
+          <td>&euro;{{ constituency.average|floatformat:2|intcomma }}</td>
+        </tr>
+      
+      {% endfor %}
+      
+    </tbody>
+  </table>
+{% endblock %}
