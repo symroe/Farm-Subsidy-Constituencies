@@ -16,6 +16,7 @@
       </tr>
     {% endfor %}
   </table>
+    <a href="{% url recipients %}?sort=amount">View all</a>  
 </div>
 
 <div class="halfcol">
@@ -32,6 +33,7 @@
       </tr>
     {% endfor %}
   </table>
+      <a href="{% url constituency_list %}?sort=average">View all</a>
 </div>
 </div>
 <div class="halfcol">
@@ -48,6 +50,7 @@
       </tr>
     {% endfor %}
   </table>
+    <a href="{% url constituency_list %}?sort=total">View all</a>
 </div>
 
 <div class="halfcol">
@@ -64,6 +67,7 @@
       </tr>
     {% endfor %}
   </table>
+  <a href="{% url constituency_list %}?sort=recipients">View all</a>
 </div>
 
 {% endblock %}

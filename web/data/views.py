@@ -27,14 +27,16 @@ def constituency_list(request):
     if sort:
         if sort == "name":
             order_by = "name"
-        if sort == "recipients":
+        elif sort == "recipients":
             order_by = "-recipients"
-        if sort == "total":
-            order_by = "-total"
-        if sort == "average":
+        elif sort == "average":
             order_by = "-average"
+        else:
+            order_by = "-total"
+
+            
         constituency_list = constituency_list.order_by(order_by)
-    print constituency_list.query.as_sql()
+
     return render_to_response(
         'constituency_list.html', 
         {
@@ -46,7 +48,14 @@ def constituency_list(request):
 def constituency(request, slug):
     constituency = get_object_or_404(Constituency, slug=slug)
     recipients = Recipient.objects.filter(
-        constituency=constituency).order_by(request.GET.get('sort', '-amount'))
+        constituency=constituency)
+    
+    sort = request.GET.get('sort', 'amount')
+    if sort == "name":
+        order_by = "name"
+    else:
+        order_by = "-amount"
+    recipients = recipients.order_by(order_by)
     
     return render_to_response(
         'constituency.html', 
@@ -56,4 +65,26 @@ def constituency(request, slug):
         },
         context_instance=RequestContext(request)
     )
+    
+def recipients(request):
+    all_recipients = Recipient.objects.all().exclude(name="")
+    
+    sort = request.GET.get('sort', 'amount')
+    if sort == "name":
+        order_by = "name"
+    elif sort== "constituency":
+        order_by = "constituency"
+    else:
+        order_by = "-amount"
+    all_recipients = all_recipients.order_by(order_by)
+    
+    return render_to_response(
+        'recipients.html', 
+        {
+            'recipients' : all_recipients,
+        },
+        context_instance=RequestContext(request)
+    )
+    
+    
     

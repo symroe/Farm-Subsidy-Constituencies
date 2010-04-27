@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% load pagination_tags %}
+{% load parse_qs %}
+
+{% block content %}
+  <table>
+    <thead>
+      <th>{% sort_link 'Name' 'sort' 'name' %}</th>
+      <th>{% sort_link 'Constituency' 'sort' 'constituency' %}</th>
+      <th>{% sort_link 'Amount' 'sort' '-amount' %}</th>
+    </thead>
+    <tbody>
+      {% autopaginate recipients 30 %}
+
+      {% for recipient in recipients %}
+        <tr>
+          <td>{{ recipient.name }}</td>
+          <td><a href="{% url constituency recipient.constituency.slug %}">{{ recipient.constituency }}</a></td>
+          <td>&euro;{{ recipient.amount|floatformat:2|intcomma }}</td>
+        </tr>
+
+      {% endfor %}
+
+    </tbody>
+  </table>
+    <h4 class="pager">{% paginate %}</h4>
+  
+{% endblock %}

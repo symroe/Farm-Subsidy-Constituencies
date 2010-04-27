@@ -15,7 +15,7 @@
     <th>{% sort_link 'Amount' 'sort' '-amount' %}</th>
   </thead>
   <tbody>
-    {% autopaginate recipients 30 3 %}
+    {% autopaginate recipients 30 %}
     
     {% for recipient in recipients %}
       <tr>
