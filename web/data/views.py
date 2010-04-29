@@ -106,7 +106,16 @@ def postcode_lookup(request):
         name = json.loads(twfy.api.getConstituency(**prams))['name']
         constituency = Constituency.objects.get(name=name)
         return HttpResponseRedirect(reverse('constituency', args=[constituency.slug,]))
-    except:
+    except Constituency.DoesNotExist:
+        return render_to_response(
+            'no_data.html', 
+            {
+                'postcode' : request.POST.get('q'),
+                'constituency' : name,
+            },
+            context_instance=RequestContext(request)
+        )
+    except Exception:
         return render_to_response(
             'postcode_not_found.html', 
             {
