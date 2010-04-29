@@ -2,6 +2,42 @@
 {% load humanize %}
 {% block content %}
   
+<div class="halfcol">
+  <h2>By Total Amount</h2>
+  <table>
+    <thead>
+      <th>Constituency</th>
+      <th>Amount</th>
+    </thead>  
+    {% for c in top_constituencies_by_amount %}
+      <tr>
+        <td><a href="{% url constituency c.slug %}">{{ c.name }}</a></td>
+        <td>&euro;{{ c.total|floatformat:2|intcomma }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+    <a href="{% url constituency_list %}?sort=total">View all</a>
+</div>
+
+<div class="halfcol">
+  <h2>By Total Recipients</h2>
+  <table>
+    <thead>
+      <th>Constituency</th>
+      <th>Recipients</th>
+    </thead>  
+    {% for c in top_constituencies_by_recipients %}
+      <tr>
+        <td><a href="{% url constituency c.slug %}">{{ c.name }}</a></td>
+        <td>{{ c.recipients }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  <a href="{% url constituency_list %}?sort=recipients">View all</a>
+</div>
+
+
+
 <div class="section clear"><div class="halfcol">
   <h2>Top Recipients</h2>
   <table>
@@ -36,38 +72,7 @@
       <a href="{% url constituency_list %}?sort=average">View all</a>
 </div>
 </div>
-<div class="halfcol">
-  <h2>By Total Amount</h2>
-  <table>
-    <thead>
-      <th>Constituency</th>
-      <th>Amount</th>
-    </thead>  
-    {% for c in top_constituencies_by_amount %}
-      <tr>
-        <td><a href="{% url constituency c.slug %}">{{ c.name }}</a></td>
-        <td>&euro;{{ c.total|floatformat:2|intcomma }}</td>
-      </tr>
-    {% endfor %}
-  </table>
-    <a href="{% url constituency_list %}?sort=total">View all</a>
-</div>
 
-<div class="halfcol">
-  <h2>By Total Recipients</h2>
-  <table>
-    <thead>
-      <th>Constituency</th>
-      <th>Recipients</th>
-    </thead>  
-    {% for c in top_constituencies_by_recipients %}
-      <tr>
-        <td><a href="{% url constituency c.slug %}">{{ c.name }}</a></td>
-        <td>{{ c.recipients }}</td>
-      </tr>
-    {% endfor %}
-  </table>
-  <a href="{% url constituency_list %}?sort=recipients">View all</a>
-</div>
+
 
 {% endblock %}
