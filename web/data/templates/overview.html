@@ -1,7 +1,16 @@
 {% extends "base.html" %}
 {% load humanize %}
 {% block content %}
-  
+
+  <form action="/postcode_lookup/" method="POST" accept-charset="utf-8" id="search_form">
+    <div class="description">
+      <h4>Find your constituency by entering a full UK post code</h4>
+    </div>
+    <label for="q">UK Post Code</label><input type="text" name="q" value="" id="q">
+    <input type="submit" value="Go" class="submit">
+  </form>
+
+<div class="section">  
 <div class="halfcol">
   <h2>By Total Amount</h2>
   <table>
@@ -73,6 +82,6 @@
 </div>
 </div>
 
-
+</div>
 
 {% endblock %}

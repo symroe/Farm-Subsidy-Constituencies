@@ -165,8 +165,17 @@ color:#FFFFFF;
 /** Home Styles */
 
 #search_form {
-  position: relative;
-  height:5em;  
+  margin-bottom:2em;
+  overflow:auto;
+}
+
+#search_form label {
+  font-size:1.4em;
+  height:20px;
+  padding:5px;
+/*  border:1px solid #333;*/
+/*  width:50%;*/
+  float:left;
 }
 
 #search_form #q {
@@ -174,16 +183,13 @@ color:#FFFFFF;
   height:20px;
   padding:5px;
   border:1px solid #333;
-  width:50%;
+  width:70%;
   float:left;
 }
 
 #search_form .description {
-  position:absolute;
-
-  right:30%;
-  bottom:1em;
-}
+    clear:both;
+  }
 
 #search_form .submit {
   float:left;

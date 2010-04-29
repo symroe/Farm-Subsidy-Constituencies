@@ -1,7 +1,13 @@
+import json
+
+from django.conf import settings
 from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect, HttpResponse, Http404
 
 from data.models import Constituency, Recipient
+from utils.twfy import TWFY
 
 def overview(request):
     
@@ -85,6 +91,31 @@ def recipients(request):
         },
         context_instance=RequestContext(request)
     )
+    
+    
+def postcode_lookup(request):
+    twfy = TWFY.TWFY(settings.TWFY_API_KEY)
+    
+    prams = {
+        'output' : 'js',
+        'postcode': request.POST.get('q'), 
+        'future': 1,
+    }
+    
+    try:
+        name = json.loads(twfy.api.getConstituency(**prams))['name']
+        constituency = Constituency.objects.get(name=name)
+        return HttpResponseRedirect(reverse('constituency', args=[constituency.slug,]))
+    except:
+        return render_to_response(
+            'postcode_not_found.html', 
+            {
+                'postcode' : request.POST.get('q'),
+            },
+            context_instance=RequestContext(request)
+        )
+        
+    
     
     
     

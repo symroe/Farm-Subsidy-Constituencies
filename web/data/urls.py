@@ -5,4 +5,5 @@ urlpatterns = patterns('data.views',
     url(r'^constituency_list/$','constituency_list', name='constituency_list'),
     url(r'^constituency/(?P<slug>[-\w]+)/$','constituency', name='constituency'),
     url(r'^recipients/$','recipients', name='recipients'),
+    url(r'^postcode_lookup/$','postcode_lookup', name='postcode_lookup'),
 )
