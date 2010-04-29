@@ -1,0 +1,25 @@
+We worked really hard to create this database, and this site represents many
+hundreds of hours of work by our team. Getting data out of governments is often
+not an easy task. We often have to fight with governments through freedom of
+information requests to get access to the data. Sometimes we get data in
+strange formats. Sometimes we have to build web robots to extract it. Once we
+have it, it takes yet more work to turn it into a useful database.
+
+All of the many hundreds of hours of work requires funding and support,
+which we are grateful to receive from our kind funders. We depend on you to
+demonstrate the value of our work by attributing us as the source. By
+attributing us or citing us in your news story, article, research report, radio
+or TV show, website, and so on, you are, in a very direct way, helping us to
+continue providing you data.
+
+We make our database available under the Open Database License, which means
+you should:
+
+* Attribute your use of this database to us, and
+* Share your changes back with everyone else.
+
+For more on how to do both of these and the specifics, please see our legal policy (http://farmsubsidy.org/legal/), the ODbL text or our
+FAQ (http://farmsubsidy.org/faq/) for details.
+
+Have fun, and if there are any questions, please get in
+touch (http://farmsubsidy.org/about/)
