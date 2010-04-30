@@ -183,7 +183,7 @@ color:#FFFFFF;
   height:20px;
   padding:5px;
   border:1px solid #333;
-  width:70%;
+  width:10em;
   float:left;
 }
 
@@ -397,4 +397,8 @@ padding:0.3em 1em;
 
 .comment .message {
   float:left;
+}
+
+.eur {
+  text-align: right;
 }

@@ -20,7 +20,7 @@
     {% for recipient in recipients %}
       <tr>
         <td>{{ recipient.name }}</a></td>
-        <td>&euro;{{ recipient.amount|floatformat:2|intcomma }}</td>
+        <td class="eur">&euro;{{ recipient.amount|floatformat:2|intcomma }}</td>
       </tr>
     
     {% endfor %}

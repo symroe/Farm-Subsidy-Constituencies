@@ -17,7 +17,7 @@
         <tr>
           <td>{{ recipient.name }}</td>
           <td><a href="{% url constituency recipient.constituency.slug %}">{{ recipient.constituency }}</a></td>
-          <td>&euro;{{ recipient.amount|floatformat:2|intcomma }}</td>
+          <td class="eur">&euro;{{ recipient.amount|floatformat:2|intcomma }}</td>
         </tr>
 
       {% endfor %}

@@ -14,8 +14,8 @@
         <tr>
           <td><a href="{% url constituency constituency.slug %}">{{ constituency.name }}</a></td>
           <td>{{ constituency.recipients }}</td>
-          <td>&euro;{{ constituency.total|floatformat:2|intcomma }}</td>
-          <td>&euro;{{ constituency.average|floatformat:2|intcomma }}</td>
+          <td class="eur">&euro;{{ constituency.total|floatformat:2|intcomma }}</td>
+          <td class="eur">&euro;{{ constituency.average|floatformat:2|intcomma }}</td>
         </tr>
       
       {% endfor %}

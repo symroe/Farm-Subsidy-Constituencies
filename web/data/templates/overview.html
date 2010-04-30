@@ -21,7 +21,7 @@
     {% for c in top_constituencies_by_amount %}
       <tr>
         <td><a href="{% url constituency c.slug %}">{{ c.name }}</a></td>
-        <td>&euro;{{ c.total|floatformat:2|intcomma }}</td>
+        <td class="eur">&euro;{{ c.total|floatformat:2|intcomma }}</td>
       </tr>
     {% endfor %}
   </table>
@@ -57,7 +57,7 @@
     {% for c in top_recipients %}
       <tr>
         <td>{{ c.name }}</td>
-        <td>&euro;{{ c.amount|floatformat:2|intcomma }}</td>
+        <td class="eur">&euro;{{ c.amount|floatformat:2|intcomma }}</td>
       </tr>
     {% endfor %}
   </table>
@@ -74,7 +74,7 @@
     {% for c in top_constituencies_by_avg %}
       <tr>
         <td><a href="{% url constituency c.slug %}">{{ c.name }}</a></td>
-        <td>&euro;{{ c.average|floatformat:2|intcomma }}</td>
+        <td class="eur">&euro;{{ c.average|floatformat:2|intcomma }}</td>
       </tr>
     {% endfor %}
   </table>
